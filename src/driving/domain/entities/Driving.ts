@@ -8,6 +8,6 @@ export class Driving {
         readonly desacceleration: number, // m/s2
         readonly vibrations: number, // vibrations per minute 
         // can add a vibration frequency parameter by knock sensor
-        readonly travel_coordenate: string, // last travel coordinate
+        readonly travel_coordinates: string, // last travel coordinate
     ){}
 }

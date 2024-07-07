@@ -1,4 +1,4 @@
-import { Driving } from "../entities/Driving";
+import { Driving } from "./entities/Driving";
 
 export interface DrivingRepository {
     registerDriving(driving: Driving): Promise<Driving | null>;

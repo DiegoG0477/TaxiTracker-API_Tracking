@@ -3,8 +3,7 @@ import morgan from "morgan";
 import { Signale } from "signale";
 import dotenv from "dotenv";
 
-// import { orderRouter } from "./order/infrastructure/routes/OrderRouter";
-// import { clientRouter } from "./order/infrastructure/routes/ClientRouter";
+import { crashRouter } from "./crash/infraestructure/routes/CrashRouter";
 
 dotenv.config();
 
@@ -16,10 +15,8 @@ const signale = new Signale();
 
 app.use(express.json());
 app.use(morgan("dev"));
-// app.use("/payment", orderRouter);
-// app.use("/clients", clientRouter);
+app.use("/crashes", crashRouter);
 
 app.listen(PORT, async () => {
-    // await connectToDatabase();
     signale.success("Server online in port " + PORT);
 });
