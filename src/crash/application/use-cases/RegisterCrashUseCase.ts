@@ -4,7 +4,7 @@ import { CrashRepository } from "../../domain/CrashRepository";
 export class RegisterCrashUseCase {
     constructor(private crashRepository: CrashRepository) {}
 
-    async registerCrash(crash: Crash): Promise<Crash | null> {
+    async execute(crash: Crash): Promise<Crash | null> {
         return this.crashRepository.registerCrash(crash);
     }
 }

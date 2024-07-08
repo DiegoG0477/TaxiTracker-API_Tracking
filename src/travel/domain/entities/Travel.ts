@@ -8,5 +8,6 @@ export class Travel {
         readonly end_coordinates: string,
         readonly duration: string,// hh:mm:ss
         readonly distance: number, //meters
+        //add this changes to te database
     ){}
 }

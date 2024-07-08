@@ -12,7 +12,7 @@ export class RegisterCrashController {
     async run(req: Request, res: Response) {
         const crash: Crash = req.body.data;
         try {
-            const registeredCrash = await this.registerCrashUseCase.registerCrash(crash);
+            const registeredCrash = await this.registerCrashUseCase.execute(crash);
 
             if (registeredCrash) {
                 res.status(201).send({
