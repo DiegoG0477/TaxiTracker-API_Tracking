@@ -1,7 +1,7 @@
 export class Travel {
     constructor(
-        readonly kit_id: string,
         readonly driver_id: string,
+        readonly date_day: string,
         readonly start_datetime: Date,
         readonly end_datetime: Date,
         readonly start_coordinates: string,

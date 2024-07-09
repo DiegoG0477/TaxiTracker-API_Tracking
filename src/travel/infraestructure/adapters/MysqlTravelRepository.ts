@@ -6,14 +6,14 @@ export class MysqlTravelRepository implements TravelRepository {
     async registerTravel(travel: Travel): Promise<Travel | null> {
         let travelResult: any = null;
         const queryStr: string = 'CALL registerTravelData(?, ?, ?, ?, ?, ?, ?, ?)';
-        const values: any[] = [travel.kit_id, travel.driver_id, travel.start_datetime, travel.end_datetime, travel.start_coordinates, travel.end_coordinates, travel.duration, travel.distance];
+        const values: any[] = [travel.driver_id, travel.date_day, travel.start_datetime, travel.end_datetime, travel.start_coordinates, travel.end_coordinates, travel.duration, travel.distance];
 
         try {
             const [result]: any = await query(queryStr, values);
 
             travelResult = new Travel(
-                travel.kit_id,
                 travel.driver_id,
+                travel.date_day,
                 travel.start_datetime,
                 travel.end_datetime,
                 travel.start_coordinates,
