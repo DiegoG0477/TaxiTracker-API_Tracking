@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import { crashRouter } from "./crash/infraestructure/routes/CrashRouter";
 import { drivingRouter } from "./driving/infraestructure/routes/DrivingRouter";
 import { travelRouter } from "./travel/infraestructure/routes/TravelRouter";
+import { geolocationRouter } from "./geolocation/infraestructure/routes/GeolocationRouter";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(morgan("dev"));
 app.use("/crashes", crashRouter);
 app.use("/drivings", drivingRouter);
 app.use("/travels", travelRouter);
+app.use("/geolocation", geolocationRouter);
 
 app.listen(PORT, async () => {
     signale.success("Server online in port " + PORT);
