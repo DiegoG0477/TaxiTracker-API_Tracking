@@ -1,18 +1,41 @@
-FROM node:lts-bullseye-slim
+# Etapa de construcción
+FROM node:20-alpine AS builder
 
-# Create app directory
+# Habilitar pnpm y preparar entorno
+RUN corepack enable && corepack prepare pnpm@latest --activate
+ENV PNPM_HOME=/usr/local/bin
+
+# Establecer directorio de trabajo
 WORKDIR /app
 
-# Install app dependencies
-COPY package*.json ./
+# Copiar archivos de dependencias
+COPY package.json pnpm-lock.yaml ./
 
-RUN npm install
+# Instalar dependencias de construcción
+RUN pnpm install
 
-# Bundle app source
+# Copiar todo el código fuente
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 4000
+# Construir el proyecto
+RUN pnpm build
 
-# Start the app
-CMD [ "npm", "run", "dev" ]
+# Imagen de producción
+FROM node:20-alpine
+
+# Habilitar pnpm y preparar entorno
+RUN corepack enable && corepack prepare pnpm@latest --activate
+ENV PNPM_HOME=/usr/local/bin
+
+# Establecer directorio de trabajo
+WORKDIR /app
+
+# Copiar dependencias de producción desde la etapa de construcción
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --production --frozen-lockfile
+
+# Copiar el código construido desde la etapa de construcción
+COPY --from=builder /app/dist /app/dist
+
+# Comando de inicio
+CMD ["npm", "start"]

@@ -1,8 +1,10 @@
 import socketIoClient, { Socket } from "socket.io-client";
+import { AuthService } from "../services/AuthService";
 
 export class SocketioAdapter {
     private socket: Socket | undefined;
     private url: string = process.env.SOCKETIO_URL ?? "http://localhost:3000";
+    private authService: AuthService = new AuthService();
 
     constructor() {
         this.connect();
@@ -11,7 +13,10 @@ export class SocketioAdapter {
     public connect(): void {
         this.socket = socketIoClient(this.url, {
             transports: ['websocket'],
-            upgrade: false 
+            upgrade: false ,
+            auth: {
+                token: this.authService.generateToken('secret-key')
+            }
         });
     }
 

@@ -11,6 +11,6 @@ export class SocketService implements ISocketService {
 
     async refreshLocation(data: Geolocation): Promise<void> {
         console.log('sending location to client', data);
-        this.socketioAdapter.emit("location:refresh", data);
+        this.socketioAdapter.emit("refresh:kit_location", data);
     }
 } 
