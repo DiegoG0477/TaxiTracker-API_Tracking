@@ -26,6 +26,7 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.14.9",
     "@types/signale": "^1.4.7",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "typescript": "^5.5.3"
   }
 }
