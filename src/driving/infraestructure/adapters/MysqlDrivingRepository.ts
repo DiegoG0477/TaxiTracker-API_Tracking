@@ -20,7 +20,11 @@ export class MysqlDrivingRepository implements DrivingRepository {
                 driving.acceleration,
                 driving.deceleration,
                 driving.vibrations,
-                driving.travel_coordinates
+                driving.travel_coordinates,
+                driving.inclination_angle,
+                driving.angular_velocity,
+                driving.g_force_x,
+                driving.g_force_y
             );
 
             if(result.affectedRows === 0) {
