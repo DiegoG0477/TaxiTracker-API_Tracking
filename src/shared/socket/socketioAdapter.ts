@@ -1,5 +1,7 @@
 import socketIoClient, { Socket } from "socket.io-client";
 import { AuthService } from "../services/AuthService";
+import dotenv from "dotenv";
+dotenv.config();
 
 export class SocketioAdapter {
     private socket: Socket | undefined;
@@ -11,11 +13,12 @@ export class SocketioAdapter {
     }
 
     public connect(): void {
+        const secretKey = process.env.SECRET_JWT ?? "secret-key";
         this.socket = socketIoClient(this.url, {
             transports: ['websocket'],
             upgrade: false ,
             auth: {
-                token: this.authService.generateToken('secret-key')
+                token: this.authService.generateToken(secretKey)
             }
         });
     }
