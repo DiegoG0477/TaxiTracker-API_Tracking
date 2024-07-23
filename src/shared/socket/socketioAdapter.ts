@@ -12,13 +12,17 @@ export class SocketioAdapter {
         this.connect();
     }
 
-    public connect(): void {
+    public async connect(): Promise<void> {
         const secretKey = process.env.SECRET_JWT ?? "secret-key";
+        const token = await this.authService.generateToken(secretKey);
+
+        console.log('ws-token', token);
+
         this.socket = socketIoClient(this.url, {
             transports: ['websocket'],
             upgrade: false ,
             auth: {
-                token: this.authService.generateToken(secretKey)
+                token: token
             }
         });
     }
