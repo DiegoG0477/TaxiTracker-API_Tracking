@@ -12,6 +12,7 @@ export class RegisterDrivingController {
     async run(req: Request, res: Response) {
         const driving: Driving = req.body;
         try {
+            console.log('received driving data:', driving);
             const registeredDriving = await this.registerDrivingUseCase.execute(driving);
 
             if (registeredDriving) {

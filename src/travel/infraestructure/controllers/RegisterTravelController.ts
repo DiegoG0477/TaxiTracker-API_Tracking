@@ -10,6 +10,7 @@ export class RegisterTravelController{
     async run(req: any, res: any){
         const travelInput: any = req.body;
         try{
+            console.log('received trvel data:', travelInput);
             const registeredTravel = await this.registerTravelUseCase.execute(travelInput);
             if(registeredTravel){
                 res.status(201).send({

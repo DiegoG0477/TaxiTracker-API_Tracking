@@ -12,6 +12,7 @@ export class RegisterCrashController {
     async run(req: Request, res: Response) {
         const crash: Crash = req.body;
         try {
+            console.log("received crash data:", crash);
             const registeredCrash = await this.registerCrashUseCase.execute(crash);
 
             if (registeredCrash) {
