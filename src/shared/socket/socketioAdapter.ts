@@ -7,7 +7,7 @@ dotenv.config();
 export class SocketioAdapter {
     private socket: Socket | undefined;
     private url: string = process.env.SOCKETIO_URL ?? "http://localhost:3000";
-    private authService: AuthService = new AuthService();
+    // private authService: AuthService = new AuthService();
 
     constructor() {
         this.connect();
