@@ -14,13 +14,18 @@ export class SocketioAdapter {
     }
 
     public async connect(): Promise<void> {
-        const secretKey = process.env.SECRET_JWT ?? "secret-key";
-        const token = await this.authService.generateToken(secretKey);
-        console.log("ws-token", token);
+        // const secretKey = process.env.SECRET_JWT;
+
+        // if (!secretKey) {
+        //     throw new Error("SECRET_JWT is not defined in the environment variables");
+        // }
+
+        // const token = await this.authService.generateToken(secretKey);
+        // console.log("ws-token", token);
 
         this.socket = socketIoClient(this.url, {
             auth: {
-                token: token,
+                token: "tokenGeneradoEnLogin",
                 kitId: "tracking-api",
             },
         });
