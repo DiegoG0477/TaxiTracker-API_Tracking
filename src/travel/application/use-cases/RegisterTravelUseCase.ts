@@ -9,15 +9,18 @@ export class RegisterTravelUseCase {
     ) {}
 
     async execute(travelInput: any): Promise<Travel | null> {
+        const startDatetime = new Date(travelInput.start_hour);
+        const endDatetime = new Date(travelInput.end_hour);
+
         const distance: number = await this.calculationService.calculateDistance(travelInput.start_coordinates, travelInput.end_coordinates);
-        const duration: string = this.calculationService.calculateDuration(travelInput.start_hour, travelInput.end_hour);
+        const duration: string = this.calculationService.calculateDuration(startDatetime, endDatetime);
         const date_day: string = travelInput.start_hour.toISOString().split('T')[0];
 
         const travel = new Travel(
             travelInput.driver_id as string,
             date_day,
-            travelInput.start_hour as Date,
-            travelInput.end_hour as Date,
+            startDatetime,
+            endDatetime,
             travelInput.start_coordinates as string,
             travelInput.end_coordinates as string,
             duration,
