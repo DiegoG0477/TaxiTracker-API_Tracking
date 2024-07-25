@@ -6,7 +6,7 @@ import { DrivingRepository } from "../../domain/DrivingRepository";
 export class MysqlDrivingRepository implements DrivingRepository {
     async registerDriving(driving: Driving): Promise<Driving | null> {
         let drivingResult: any = null;
-        const queryStr: string = 'CALL registerDrivingData(?, ?, ?, ?, ?, ?, ?, ?)';
+        const queryStr: string = 'CALL registerDrivingData(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         const values: any[] = [driving.kit_id, driving.driver_id, driving.travel_id, driving.datetime, driving.acceleration, driving.deceleration, driving.vibrations, driving.travel_coordinates];
 
         try {
