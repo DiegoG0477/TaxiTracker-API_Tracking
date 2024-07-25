@@ -8,7 +8,7 @@ export class RegisterTravelController{
     ){}
 
     async run(req: any, res: any){
-        const travelInput: any = req.body.data;
+        const travelInput: any = req.body;
         try{
             const registeredTravel = await this.registerTravelUseCase.execute(travelInput);
             if(registeredTravel){

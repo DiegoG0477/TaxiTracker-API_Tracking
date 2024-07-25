@@ -10,7 +10,7 @@ export class RegisterDrivingController {
     ){}
 
     async run(req: Request, res: Response) {
-        const driving: Driving = req.body.data;
+        const driving: Driving = req.body;
         try {
             const registeredDriving = await this.registerDrivingUseCase.execute(driving);
 
