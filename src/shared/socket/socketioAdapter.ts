@@ -1,5 +1,5 @@
 import socketIoClient, { Socket } from "socket.io-client";
-import { AuthService } from "../services/AuthService";
+// import { AuthService } from "../services/AuthService";
 import dotenv from "dotenv";
 
 dotenv.config();
