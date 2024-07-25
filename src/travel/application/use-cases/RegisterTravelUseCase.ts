@@ -14,7 +14,7 @@ export class RegisterTravelUseCase {
 
         const distance: number = await this.calculationService.calculateDistance(travelInput.start_coordinates, travelInput.end_coordinates);
         const duration: string = this.calculationService.calculateDuration(startDatetime, endDatetime);
-        const date_day: string = travelInput.start_hour.toISOString().split('T')[0];
+        const date_day: string = startDatetime.toISOString().split('T')[0];
 
         const travel = new Travel(
             travelInput.driver_id as string,
